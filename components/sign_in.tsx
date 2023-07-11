@@ -1,7 +1,7 @@
 'use client'
 import { SignIn, SignInButton, UserButton, useUser } from "@clerk/nextjs";
 
-export default function Sign_in_page() {
+export function Sign_in() {
 
   const { isLoaded, isSignedIn, user } = useUser();
   

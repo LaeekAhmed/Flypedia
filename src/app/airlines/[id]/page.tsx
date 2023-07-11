@@ -1,37 +1,55 @@
 import Image from 'next/image'
-import { apiCall } from '../../../utils'
-import { FlightInfo, FlightCard} from '../../../components/FlightCard';
-import { AirlineCard, Airline } from '../../../components/AirlineCard';
+import { apiCall } from '../../../../utils'
+import { FlightInfo, FlightCard} from '../../../../components/FlightCard';
 
-export default async function Airlines() {
+// id corresponds to IATA code;
+export default async function Airlines({params} : {params: {id : string}}) {
 
+  const mappings: { [key: string]: string } = {
+    "EK": "Emirates",
+    "QR": "Qatar Airways",
+    "SQ": "Singapore Airlines",
+    "CX": "Cathay Pacific Airways",
+    "LH": "Lufthansa",
+    "BA": "British Airways",
+    "AF": "Air France",
+    "AA": "American Airlines",
+    "UA": "United Airlines",
+    "DL": "Delta AirLines"
+  }
   
-  const airlines : Airline[] = [
-    { name: "Emirates", iataCode: "EK" },
-    { name: "Qatar Airways", iataCode: "QR" },
-    { name: "Singapore Airlines", iataCode: "SQ" },
-    { name: "Cathay Pacific Airways", iataCode: "CX" },
-    { name: "Lufthansa", iataCode: "LH" },
-    { name: "British Airways", iataCode: "BA" },
-    { name: "Air France", iataCode: "AF" },
-    { name: "American Airlines", iataCode: "AA" },
-    { name: "United Airlines", iataCode: "UA" },
-    { name: "Delta AirLines", iataCode: "DL" },   
-  ];
+
+  const flight_data = await apiCall(params.id);
+  
+  const filteredFlights = flight_data.response.filter((flight: { status: string; }) => flight.status === "landed" || "en-route" || "scheduled");
+  const count: number = filteredFlights.length;
+  const data_empty = count === 0;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="text-3xl z-10 w-full max-w-5xl items-center justify-between font-mono lg:flex">
-          All airlines :
+          viewing flights for&nbsp;
+          {mappings[params.id]}
           &nbsp;
           <a className="underline" href="/airlines">← Go Back</a>
       </div>
 
-      <section>
+      {data_empty ? 
+      (<div className="relative flex place-items-center">loading ...</div>)
+      : 
+      (
+        <section className='text-xl'>
+          <p className="relative flex place-items-center"> 
+            no. of flights: {count}
+            <br />
+            results :
+          </p>
           <div>
-            {airlines.map((airline : Airline) => <AirlineCard airline={airline}/>)}
+            {filteredFlights.map((flight : FlightInfo) => <FlightCard flight={flight}/>)}
           </div>
-      </section>
+        </section>
+      )
+      }
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
