@@ -45,7 +45,7 @@ export default async function Airlines({params} : {params: {id : string}}) {
             results :
           </p>
           <div>
-            {filteredFlights.map((flight : FlightInfo) => <FlightCard flight={flight}/>)}
+            {filteredFlights.map((flight : FlightInfo) => <FlightCard key={flight.flight_iata} flight={flight}/>)}
           </div>
         </section>
       )

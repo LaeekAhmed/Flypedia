@@ -24,12 +24,12 @@ export default async function Airlines() {
       <div className="text-3xl z-10 w-full max-w-5xl items-center justify-between font-mono lg:flex">
           All airlines :
           &nbsp;
-          <a className="underline" href="/airlines">← Go Back</a>
+          <a className="underline" href="/">← Go Back</a>
       </div>
 
       <section>
           <div>
-            {airlines.map((airline : Airline) => <AirlineCard airline={airline}/>)}
+            {airlines.map((airline : Airline) => <AirlineCard key={airline.iataCode} airline={airline}/>)}
           </div>
       </section>
 
