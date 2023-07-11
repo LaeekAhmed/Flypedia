@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { Btn } from "./btn";
-import { PropsFromToggle } from "react-bootstrap/esm/DropdownToggle";
 import Link from 'next/link'
 
 export interface FlightInfo {
