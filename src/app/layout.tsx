@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
         <html lang="en">
           <body className={inter.className}>
             <Navbar/>
@@ -29,6 +29,6 @@ export default function RootLayout({
         <Analytics/>
         <script async src="https://analytics.umami.is/script.js" data-website-id="0baa8f92-8ee2-43d0-b7ae-426caf229772"></script>
         </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   )
 }
