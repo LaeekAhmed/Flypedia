@@ -1,4 +1,4 @@
-import { airlineInfo, apiCall, flightDetails } from "../../../utils";
+import { airlineInfo, apiCall } from "../../../utils";
 
 // test AIRLABS API-1 :
 async function flightInfo0(name : string) 
@@ -7,11 +7,11 @@ async function flightInfo0(name : string)
     return data
 }
 
-async function flightInfo1 (iata : string)
-{
-  const data = await flightDetails(iata)
-  return data.response
-}
+// async function flightInfo1 (iata : string)
+// {
+//   const data = await flightDetails(iata)
+//   return data.response
+// }
 
 async function flightInfo2 (status : string, airline : string)
 {
