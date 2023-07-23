@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Navbar, Footer } from '../../components'
+import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
             <Footer/>
           </body>
         <Analytics/>
+        <script async src="https://analytics.umami.is/script.js" data-website-id="0baa8f92-8ee2-43d0-b7ae-426caf229772"></script>
         </html>
     </ClerkProvider>
   )

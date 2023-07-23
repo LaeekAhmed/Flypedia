@@ -1,10 +1,16 @@
-import { airlineInfo, apiCall } from "../../../utils";
+import { airlineInfo, apiCall, flightDetails } from "../../../utils";
 
 // test AIRLABS API-1 :
-async function flightInfo () 
+async function flightInfo0(name : string) 
 {
-    const data = await airlineInfo("Qatar airways")
+    const data = await airlineInfo(name)
     return data
+}
+
+async function flightInfo1 (iata : string)
+{
+  const data = await flightDetails(iata)
+  return data.response
 }
 
 async function flightInfo2 (status : string, airline : string)
@@ -31,7 +37,10 @@ async function flightInfo2 (status : string, airline : string)
 
 export async function GET(request: Request)
 {
-    const responsePayload = await flightInfo2("landed","UA");
+    // const responsePayload = await flightInfo2("landed","KN");
+    const responsePayload = await flightInfo0("Qatar airways");
+    // const responsePayload = await flightInfo1("DL315");
+
     return new Response(JSON.stringify(responsePayload),
     {
       headers: { 'Content-Type': 'application/json' },

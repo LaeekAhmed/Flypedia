@@ -1,4 +1,5 @@
 const api_base = 'https://airlabs.co/api/v9/flights?';
+const api_base2 = 'https://airlabs.co/api/v9/flight?';
 
 
 // airline info API call :
@@ -7,6 +8,7 @@ export async function airlineInfo(name : string)
   try {
     const response = await fetch(`https://api.api-ninjas.com/v1/airlines?name=` + name, 
     {
+      cache: 'force-cache',
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -15,7 +17,7 @@ export async function airlineInfo(name : string)
     });
 
     const result = await response.json();
-    console.log("fetched results");
+    // console.log("fetched results",result);
     return result;
   }
 
@@ -32,6 +34,7 @@ export async function apiCall(airline : string) {
   try {
     const response = await fetch(`${api_base}${method}`, 
     {
+      cache: 'force-cache',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +52,54 @@ export async function apiCall(airline : string) {
   }
 }
 
-// get location based on coordinates
-export function getLocation() {
+// airline based flight info API call :
+// export async function flightDetails(iata : string) {
+//   const method = 'ping'
+//   const params = { param1: 'value1', api_key : process.env.airlabs_api_key, flight_iata : iata }
 
-}
+//   try {
+//     const response = await fetch(`${api_base2}${method}`, 
+//     {
+//       cache: 'force-cache',
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(params),
+//     });
+
+//     const result = await response.json();
+//     console.log("fetched results");
+//     return result;
+//   }
+
+//   catch (error) {
+//     return error;
+//   }
+// }
+
+export const updateSearchParams = (type: string, value: string) => {
+    // Get the current URL search params
+    const searchParams = new URLSearchParams(window.location.search);
+
+    // Set the specified search parameter to the given value
+    searchParams.set(type, value);
+
+    // Set the specified search parameter to the given value
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+
+    return newPathname;
+};
+
+export const deleteSearchParams = (type: string) => {
+    // Set the specified search parameter to the given value
+    const newSearchParams = new URLSearchParams(window.location.search);
+
+    // Delete the specified search parameter
+    newSearchParams.delete(type.toLocaleLowerCase());
+
+    // Construct the updated URL pathname with the deleted search parameter
+    const newPathname = `${window.location.pathname}?${newSearchParams.toString()}`;
+
+    return newPathname;
+};

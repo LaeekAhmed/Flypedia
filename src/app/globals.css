@@ -9,13 +9,30 @@
   'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+/* css based on system theme : */
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
+  }
+} */
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Media query for larger screens (e.g., desktops) */
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px; /* Adjust font size for larger screens */
   }
 }
 
 body {
+  font-size: 16px ;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -25,14 +42,19 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-.navbar {
+/* .navbar {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px;
   border-bottom: 2px solid #ccc;
+} */
+
+.comboinput:focus {
+  border: none !important;
 }
+
 .auth-box {
   font-family: var(--font-mono);
   margin-right: 1%;
@@ -70,7 +92,7 @@ body {
   color: #ffffff;
 }
 
-.auth-box .sign-in-btn {
+/* .auth-box .sign-in-btn {
   font-family: var(--font-mono);
   display: inline-block;
   padding: 10px 20px;
@@ -83,24 +105,28 @@ body {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
+} */
 
 .auth-box .sign-in-btn:hover {
   background-color: #000000;
   color: #ffffff;
 }
 
-footer {
+/* footer {
   border-top: 2px solid #ccc;
   padding: 1%;
   gap: 1%;
-}
+} */
 
 .flight_card{
   border: 2px solid #ccc;
   border-radius: 7px;
   margin: 2%;
   padding: 3%;
+}
+
+.card:hover {
+  box-shadow: solid 1px #9000ff;
 }
 
 .blinking-dot {
@@ -137,9 +163,6 @@ footer {
     transform: scale(1.5);
   }
 }
-
-
-
 
 .grey-dot {
   width: 10px;

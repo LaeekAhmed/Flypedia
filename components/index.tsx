@@ -1,6 +1,6 @@
-import { Hero } from "./hero";
+import { Hero } from "./linker";
 import { Sign_in } from "./sign_in";
-import { Btn } from "./btn";
+import { Btn } from "./Btn";
 import Footer from "./footer";
 import Navbar from "./navbar";
 

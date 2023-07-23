@@ -15,7 +15,7 @@ export function Sign_in() {
         </div>
       ) : (
         <SignInButton mode="modal">
-          <button className="sign-in-btn">
+          <button className="flex sign-in-btn border-2 border-black rounded-md">
             Sign in
           </button>
         </SignInButton>

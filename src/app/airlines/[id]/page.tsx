@@ -1,125 +1,89 @@
-import Image from 'next/image'
-import { apiCall } from '../../../../utils'
-import { FlightInfo, FlightCard} from '../../../../components/FlightCard';
+import Image from "next/image";
+import { apiCall } from "../../../../utils";
+import { FlightInfo, FlightCard } from "../../../../components/FlightCard";
+import { Hero } from "../../../../components";
+import ShowMore from "./ShowMore";
+
+interface searchParams {
+   limit: number;
+}
 
 // id corresponds to IATA code;
-export default async function Airlines({params} : {params: {id : string}}) {
+export default async function Airlines({
+   params,
+   searchParams,
+}: {
+   params: { id: string };
+   searchParams: searchParams;
+}) {
+   const mappings: { [key: string]: string } = {
+      EK: "Emirates",
+      QR: "Qatar Airways",
+      SQ: "Singapore Airlines",
+      CX: "Cathay Pacific",
+      AC: "Air Canada",
+      LH: "Lufthansa",
+      BA: "British Airways",
+      AF: "Air France",
+      AA: "American Airlines",
+      UA: "United Airlines",
+      DL: "Delta",
+      JL: "Japan Airlines",
+      AI: "Air India",
+      QF: "Qantas",
+      EY: "Etihad Airways",
+      TK: "Turkish Airlines",
+      WN: "Southwest Airlines",
+      FR: "Ryanair",
+      LX: "Swiss",
+      AK: "AirAsia",
+   };
 
-  const mappings: { [key: string]: string } = {
-    "EK": "Emirates",
-    "QR": "Qatar Airways",
-    "SQ": "Singapore Airlines",
-    "CX": "Cathay Pacific Airways",
-    "LH": "Lufthansa",
-    "BA": "British Airways",
-    "AF": "Air France",
-    "AA": "American Airlines",
-    "UA": "United Airlines",
-    "DL": "Delta AirLines"
-  }
-  
+   const flight_data = await apiCall(params.id);
 
-  const flight_data = await apiCall(params.id);
-  
-  const filteredFlights = flight_data.response.filter((flight: { status: string; }) => flight.status === "landed" || "en-route" || "scheduled");
-  const count: number = filteredFlights.length;
-  const data_empty = count === 0;
+   const count: number = flight_data.response.length;
+   const data_empty = count === 0;
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="text-3xl z-10 w-full max-w-5xl items-center justify-between font-mono lg:flex">
-          viewing flights for&nbsp;
-          {mappings[params.id]}
-          &nbsp;
-          <a className="underline" href="/airlines">← Go Back</a>
-      </div>
-
-      {data_empty ? 
-      (<div className="relative flex place-items-center">loading ...</div>)
-      : 
-      (
-        <section className='text-xl'>
-          <p className="relative flex place-items-center"> 
-            no. of flights: {count}
-            <br />
-            results :
-          </p>
-          <div>
-            {filteredFlights.map((flight : FlightInfo) => <FlightCard key={flight.flight_iata} flight={flight}/>)}
-          </div>
-        </section>
+   const filteredFlights = flight_data.response
+      .filter(
+         (flight: { status: string }) =>
+            flight.status === "landed" ||
+            flight.status === "en-route" ||
+            flight.status === "scheduled"
       )
-      }
+      .slice(0, searchParams.limit || 10);
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+   return (
+      <main className="flex min-h-screen flex-col justify-between p-7">
+         <div className="text-xl w-full max-w-5xl items-center justify-between lg:flex">
+            <p className="">Viewing flights for <strong className="text-indigo-600">{mappings[params.id]}</strong></p>
+            <Hero msg="Back" path="/airlines/" />
+         </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+         {data_empty ? (
+            <div className="relative flex place-items-center">loading ...</div>
+         ) : (
+            <section className="">
+               <p className="mb-3 relative flex place-items-center">
+                  Active flights:<strong>{' '}{count}</strong>
+               </p>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+               <div className="grid text-center lg:mb-0 md:grid-cols-3 lg:grid-cols-4 lg:text-left gap-5">
+                  {filteredFlights.map((flight: FlightInfo) => (
+                     <FlightCard
+                        key={flight.flight_iata}
+                        flight={flight}
+                        name={mappings[params.id]}
+                     />
+                  ))}
+               </div>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+               <ShowMore
+                  pageNumber={(searchParams.limit || 10) / 10}
+                  isNext={(searchParams.limit || 10) > filteredFlights.length}
+               />
+            </section>
+         )}
+      </main>
+   );
 }
