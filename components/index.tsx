@@ -1,9 +1,9 @@
 import { Hero } from "./linker";
 import { Sign_in } from "./sign_in";
-import { Btn } from "./Btn";
 import Footer from "./footer";
 import Navbar from "./navbar";
 import { Airline } from "./AirlineCard";
+import { Btn } from "./btn";
 
 export const airlinesList: Airline[] = [
     { name: "Qatar Airways", iataCode: "QR" },

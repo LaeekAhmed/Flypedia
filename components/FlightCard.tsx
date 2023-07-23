@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Btn } from "./Btn";
+import { Btn } from "./btn";
 import DetailsCard from "./DetailsCard";
 
 export interface FlightInfo {

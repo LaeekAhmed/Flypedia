@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchCombo from "./SearchCombo";
-import { Btn } from "./Btn";
+import { Btn } from "./btn";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   <button title="search" type='submit' className={`${otherClasses}`}>

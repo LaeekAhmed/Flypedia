@@ -3,7 +3,7 @@ import { apiCall } from '../../../utils'
 import { FlightInfo, FlightCard} from '../../../components/FlightCard';
 import { AirlineCard, Airline } from '../../../components/AirlineCard';
 import { Btn, Hero, airlinesList } from '../../../components';
-import SearchBar from '../../../components/SearchBar';
+import SearchBar from '../../../components/searchBar';
 
 interface props {
   searchParams : { airline : string }

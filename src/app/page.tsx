@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import { Hero, Btn } from '../../components'
-import Hero_tw from '../../components/Hero'
+// import Image from 'next/image'
+// import { Hero, Btn } from '../../components'
+import Hero_tw from '../../components/hero'
 
 export default function Home() {
   

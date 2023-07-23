@@ -2,7 +2,7 @@
 import Image from "next/image"
 import {Fragment} from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { Btn } from "./Btn"
+import { Btn } from "./btn"
 import { FlightInfo } from "./FlightCard"
 
 interface CarDetailsProps {
