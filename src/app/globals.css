@@ -31,7 +31,7 @@
   }
 }
 
-body {
+/* body {
   font-size: 16px ;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -40,7 +40,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
 
 /* .navbar {
   margin: 0 auto;

@@ -32,6 +32,7 @@ export async function apiCall(airline : string) {
   try {
     const response = await fetch(`${api_base}${method}`, 
     {
+      cache: 'no-cache',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -51,7 +51,7 @@ export default async function Airlines({
             flight.status === "en-route" ||
             flight.status === "scheduled"
       )
-      .slice(0, searchParams.limit || 10);
+      .slice(0, searchParams.limit || 20);
 
    return (
       <main className="flex min-h-screen flex-col justify-between p-7">
@@ -79,8 +79,8 @@ export default async function Airlines({
                </div>
 
                <ShowMore
-                  pageNumber={(searchParams.limit || 10) / 10}
-                  isNext={(searchParams.limit || 10) > filteredFlights.length}
+                  pageNumber={(searchParams.limit || 20) / 20}
+                  isNext={(searchParams.limit || 20) > filteredFlights.length}
                />
             </section>
          )}
