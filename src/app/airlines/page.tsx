@@ -18,14 +18,14 @@ export default function Airlines({ searchParams} : props) {
   }
 
   return (
-    <main className="flex min-h-screen flex-col p-7">
+    <main className="flex min-h-screen flex-col p-7 bg-white">
       
       <div className="flex text-3xl pb-10 max-w-5xl items-center justify-between">
           <SearchBar/>
           <Hero msg='Back' path='/'/>
       </div>
 
-      <div className='grid text-center gap-5 lg:grid-cols-5 lg:text-left'>
+      <div className='grid text-center gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:text-left '>
             {filteredList.map((airline : Airline) => <AirlineCard key={airline.iataCode} airline={airline}/>)}
       </div>
 

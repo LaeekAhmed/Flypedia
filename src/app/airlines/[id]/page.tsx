@@ -54,7 +54,7 @@ export default async function Airlines({
       .slice(0, searchParams.limit || 20);
 
    return (
-      <main className="flex min-h-screen flex-col justify-between p-7">
+      <main className="flex min-h-screen flex-col justify-between p-7 bg-white">
          <div className="text-xl w-full max-w-5xl items-center justify-between lg:flex">
             <p className="">Viewing flights for <strong className="text-indigo-600">{mappings[params.id]}</strong></p>
             <Hero msg="Back" path="/airlines/" />
@@ -68,7 +68,7 @@ export default async function Airlines({
                   Active flights:<strong>{' '}{count}</strong>
                </p>
 
-               <div className="grid text-center lg:mb-0 md:grid-cols-3 lg:grid-cols-4 lg:text-left gap-5">
+               <div className="grid text-center lg:mb-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:text-left gap-5">
                   {filteredFlights.map((flight: FlightInfo) => (
                      <FlightCard
                         key={flight.flight_iata}
