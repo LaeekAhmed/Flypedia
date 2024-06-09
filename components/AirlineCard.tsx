@@ -55,13 +55,7 @@ export async function AirlineCard({ airline }: Props) {
       <div className="card border-2 border-gray-300 hover:bg-gray-50 rounded-lg p-5 flex flex-col justify-between">
          {logo_url && (
             <div className="">
-               <Image
-                  src={logo_url}
-                  alt={`${name} logo`}
-                  quality={100}
-                  width={100}
-                  height={100}
-               />
+               <Image src={logo_url} alt={`${name} logo`} quality={100} width={100} height={100} />
             </div>
          )}
 
@@ -73,22 +67,11 @@ export async function AirlineCard({ airline }: Props) {
          </div>
 
          <div className="flex mt-auto transition duration-300 hover:font-bold">
-            <a className="font-mono" href={`/airlines/${airline.iataCode}`}>
+            <Link className="font-mono" href={`/airlines/${airline.iataCode}`}>
                See Flights{" "}
-            </a>
-            <svg
-               xmlns="http://www.w3.org/2000/svg"
-               fill="none"
-               viewBox="0 0 24 24"
-               strokeWidth={1.5}
-               stroke="currentColor"
-               className="ml-2 w-6 h-6"
-            >
-               <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-               />
+            </Link>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="ml-2 w-6 h-6">
+               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
          </div>
 

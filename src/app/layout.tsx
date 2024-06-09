@@ -1,10 +1,10 @@
-import { ClerkProvider } from '@clerk/nextjs'
+// import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { Navbar, Footer } from '../../components'
-import Script from 'next/script'
+// import Script from 'next/script'
 
 const inter = Inter({ subsets: ['latin'] })
 
