@@ -84,9 +84,9 @@ export function AirlineCard({ airline }: Props) {
          </div>
 
          <div className="flex mt-auto transition duration-300 hover:font-bold">
-            <a className="font-mono" href={`/airlines/${airline.iataCode}`}>
+            <Link className="font-mono" href={`/airlines/${airline.iataCode}`}>
                See Flights{" "}
-            </a>
+            </Link>
             <svg
                xmlns="http://www.w3.org/2000/svg"
                fill="none"
