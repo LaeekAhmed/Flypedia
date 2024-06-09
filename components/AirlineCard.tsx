@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { airlineInfo } from "../utils";
-import DetailsCard from "./AirlineDetails";
 
 export interface AirlineInfo {
    iata: string;

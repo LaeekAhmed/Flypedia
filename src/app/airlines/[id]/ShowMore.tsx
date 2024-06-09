@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { updateSearchParams } from "../../../../utils/index";
-import { Btn } from "../../../../components";
 
 interface ShowMoreProps {
    pageNumber: number;
@@ -28,17 +27,9 @@ const ShowMore = ({ pageNumber, isNext }: ShowMoreProps) => {
                disabled={false}
                type={"button"}
                onClick={handleNavigation}
-               className="m-1 inline-flex font-semibold items-center px-5 py-2 bg-transparent text-black text-base no-underline border-2 border-black rounded-lg transition duration-300 hover:bg-indigo-600 hover:border-white hover:text-white"
-            >
+               className="m-1 inline-flex font-semibold items-center px-5 py-2 bg-transparent text-black text-base no-underline border-2 border-black rounded-lg transition duration-300 hover:bg-indigo-600 hover:border-white hover:text-white">
                Show More
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6 ml-2"
-               >
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-2">
                   <path
                      strokeLinecap="round"
                      strokeLinejoin="round"
