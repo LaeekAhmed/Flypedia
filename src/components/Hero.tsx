@@ -1,15 +1,13 @@
 import Link from "next/link";
 import { flightInfo } from "@/utils";
 import { ArrowRight } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { mappings, FlightInfo } from "@/types/index";
 import { FlightCard } from "@/components/FlightCard";
 import SearchSuggestions from "@/components/SearchSuggestions";
 
 export default async function Component() {
    const flight_data = await flightInfo("AC");
-   const count: number = flight_data.response.length;
+   // const count: number = flight_data.response.length;
    const filteredFlights = flight_data.response.filter((flight: FlightInfo) => flight.flight_iata).slice(0, 8);
    let airline = "AC";
 
