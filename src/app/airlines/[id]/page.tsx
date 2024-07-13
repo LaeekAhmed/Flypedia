@@ -1,72 +1,56 @@
-// import Image from "next/image";
-import { apiCall } from "../../../../utils";
-import { FlightInfo, FlightCard } from "../../../../components/FlightCard";
-import { Hero } from "../../../../components";
 import ShowMore from "./ShowMore";
+import { flightInfo } from "@/utils";
+import { Frown } from "lucide-react";
+import SearchComponent from "@/components/search";
+import { FlightCard } from "@/components/FlightCard";
+import { mappings, FlightInfo } from "@/types/index";
 
-interface searchParams {
-   limit: number;
+interface FlightsProps {
+   params: {
+      id: string; // IATA code
+   };
+   searchParams: {
+      query: string;
+      limit: number;
+   };
 }
 
-// id corresponds to IATA code;
-export default async function Airlines({ params, searchParams }: { params: { id: string }; searchParams: searchParams }) {
-   // mappings for airline IATA codes;
-   const mappings: { [key: string]: string } = {
-      EK: "Emirates",
-      QR: "Qatar Airways",
-      SQ: "Singapore Airlines",
-      CX: "Cathay Pacific",
-      AC: "Air Canada",
-      LH: "Lufthansa",
-      BA: "British Airways",
-      AF: "Air France",
-      AA: "American Airlines",
-      UA: "United Airlines",
-      DL: "Delta",
-      JL: "Japan Airlines",
-      AI: "Air India",
-      QF: "Qantas",
-      EY: "Etihad Airways",
-      TK: "Turkish Airlines",
-      WN: "Southwest Airlines",
-      FR: "Ryanair",
-      LX: "Swiss",
-      AK: "AirAsia",
-   };
+export default async function Flights({ params, searchParams }: FlightsProps) {
+   const flight_data = await flightInfo(params.id); // Fetch flight data based on IATA code
+   const query = searchParams?.query || "";
+   const limit = searchParams?.limit || 30;
 
-   const flight_data = await apiCall(params.id);
-
-   const count: number = flight_data.response.length;
-   const data_empty = count === 0;
-
-   const filteredFlights = flight_data.response.filter((flight: { status: string }) => flight.status === "landed" || flight.status === "en-route" || flight.status === "scheduled").slice(0, searchParams.limit || 20);
+   const filteredFlights = flight_data.response.filter((flight: FlightInfo) => flight.flight_iata && flight.flight_iata.toLowerCase().includes(query.toLowerCase())).slice(0, limit);
+   const count: number = filteredFlights.length;
 
    return (
-      <main className="flex min-h-screen flex-col justify-between p-7 bg-white">
-         <div className="text-xl w-full max-w-5xl items-center justify-between lg:flex">
-            <p className="">
-               Viewing flights for <strong className="text-indigo-600">{mappings[params.id]}</strong>
-            </p>
-            <Hero msg="Back" path="/airlines/" />
+      <div className='w-full mx-auto px-8 md:px-8 py-8'>
+         <div className='flex flex-col gap-2'>
+            <div className='flex items-center justify-between'>
+               <h1 className='text-3xl font-bold'>{mappings[params.id]}</h1>
+               <div className='bg-muted px-3 py-1 rounded-md text-sm font-medium'>{count} Active Flights</div>
+            </div>
+            <p className='text-muted-foreground'>Track the current status of {mappings[params.id]} flights.</p>
          </div>
 
-         {data_empty ? (
-            <div className="relative flex place-items-center">loading ...</div>
+         <SearchComponent placeholder={`Search for ${mappings[params.id]} flight numbers`} />
+
+         {filteredFlights.length > 0 ? (
+            <div className='grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8'>
+               {filteredFlights.map((flight: FlightInfo) => (
+                  <FlightCard key={flight.flight_iata} flight={flight} name={mappings[params.id]} />
+               ))}
+            </div>
          ) : (
-            <section className="">
-               <p className="mb-3 relative flex place-items-center">
-                  Active flights:<strong> {count}</strong>
+            <div className='text-center py-8 text-muted-foreground'>
+               <p className='inline-flex items-center justify-center'>
+                  No results found
+                  <Frown className='ml-2' />
                </p>
-
-               <div className="grid text-center lg:mb-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:text-left gap-5">
-                  {filteredFlights.map((flight: FlightInfo) => (
-                     <FlightCard key={flight.flight_iata} flight={flight} name={mappings[params.id]} />
-                  ))}
-               </div>
-
-               <ShowMore pageNumber={(searchParams.limit || 20) / 20} isNext={(searchParams.limit || 20) > filteredFlights.length} />
-            </section>
+            </div>
          )}
-      </main>
+
+         <ShowMore pageNumber={(searchParams.limit || 30) / 30} isNext={(searchParams.limit || 30) > filteredFlights.length} />
+      </div>
    );
 }

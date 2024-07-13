@@ -1,8 +1,8 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the **Flypedia** project, a comprehensive flight information platform built with [Next.js](https://nextjs.org/).
 
-## Getting Started
+## Getting Started 🚀
 
-First, run the development server:
+To get the Flypedia development server running, run from the root directory:
 
 ```bash
 npm run dev
@@ -12,23 +12,23 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Navigate to [http://localhost:4000](http://localhost:4000) in your browser to see Flypedia in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Begin by editing the main page in [`src/app/page.tsx`](src/app/page.tsx). The page auto-updates as you make changes to the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Dive Deeper into Flypedia
 
-## Learn More
+To understand more about the technologies behind Flypedia:
 
-To learn more about Next.js, take a look at the following resources:
+- Visit the [Next.js Documentation](https://nextjs.org/docs) to learn about Next.js features and API.
+- Explore the [Learn Next.js](https://nextjs.org/learn) tutorial for an interactive introduction to Next.js.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Flypedia utilizes the [Airlabs](https://airlabs.co/) API for real-time flight details (departure times, arrivals, aircraft information etc.) and the [api-ninjas](https://api-ninjas.com/) API for airline details (airline name, IATA code, ICAO code etc.)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Your **feedback and contributions** to the [Flypedia GitHub repository](https://github.com/LaeekAhmed/flypedia) are highly appreciated!
 
-## Deploy on Vercel
+## Deploying Flypedia
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Deploying your Flypedia app is seamless with the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme), brought to you by the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For detailed deployment instructions, refer to the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
