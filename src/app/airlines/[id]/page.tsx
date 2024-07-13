@@ -1,7 +1,7 @@
 import ShowMore from "./ShowMore";
 import { flightInfo } from "@/utils";
 import { Frown } from "lucide-react";
-import SearchComponent from "@/components/search";
+import SearchComponent from "@/components/Search";
 import { FlightCard } from "@/components/FlightCard";
 import { mappings, FlightInfo } from "@/types/index";
 
