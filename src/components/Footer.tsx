@@ -36,7 +36,7 @@ export default function FooterWithSocialMediaIcons() {
                <div className='mt-4 flex space-x-6 sm:mt-0 sm:justify-center'>
                   <Footer.Icon target='_blank' rel='noopener' href='https://www.linkedin.com/in/laeek-ahmed-shaikh/' icon={BsLinkedin} />
                   <Footer.Icon target='_blank' rel='noopener' href='https://github.com/LaeekAhmed' icon={BsGithub} />
-                  <Footer.Icon target='_blank' rel='noopener' href='https://laeekahmed.github.io/Portfolio-React/' icon={BsGlobe} />
+                  <Footer.Icon target='_blank' rel='noopener' href='https://laeekahmed.github.io/portfolio/' icon={BsGlobe} />
                </div>
             </div>
          </div>
